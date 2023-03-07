@@ -1,0 +1,26 @@
+div {
+    width: 800px;
+    height: 500px;
+    margin-top: 10px;
+    background-color: skyblue;
+    background-image: url('https://item.kakaocdn.net/do/d84248170c2c52303db27306a00fb861f604e7b0e6900f9ac53a43965300eb9a');
+}
+
+.item1 {
+    background-position: center;
+    background-repeat: repeat-x;
+    background-size: auto;
+}
+
+.item2 {
+    background-size: contain;
+    background-position: left 100px top 30px;
+    background-repeat: no-repeat;
+}
+
+.item3 {
+    background-size: cover;
+    background-position: left 100px top 30px;
+    background-repeat: no-repeat;
+
+}

@@ -1,0 +1,21 @@
+.circle {
+    position: relative;
+    width: 310px;
+    height: 310px;
+    border-radius: 50%;
+    background: linear-gradient(49deg, rgb(238, 212, 43), rgb(212, 14, 189));
+}
+.circleimg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width:290px;
+    height: 290px;
+    background: #fff url('./../img/pooh.png') no-repeat center/contain;
+    border-radius: 50%;
+    border: 5px solid #fff;
+    z-index: 2;
+}

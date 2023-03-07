@@ -1,0 +1,124 @@
+/* 
+transition vs. animation
+
+transition
+    - 전환될 "스타일"을 지정
+    - hover, active, onclick 등의 이벤트에 의해 발생
+
+animation
+    - 중간 step지정 가능 : 보다 세밀한 스타일 전환이 가능
+    - 정지, 반복, 시작 동작 가능
+    - @keyframes 로 이루어짐
+
+*/
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.box {
+    width: 100px;
+    height: 100px;
+    background-color: thistle;
+    position: relative;
+    animation-name: my-ani;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    /* animation-delay: 1s; */
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes my-ani {
+    0% {
+        left: 0px;
+    }
+    25%{
+        left: 200px;
+    }
+    50%{
+        left: 400px;
+    }
+    75%{
+        left: 200px;
+    }
+    100%{
+        left: 0px;
+    }
+    /* 반복될떄 0이랑 100일떄 맞춰주지 않으면 어색할 수 있음 */
+    /* to - form일 경우 animation-direction: alternate; 이 속성 사용 from에서 to로 되돌아가게 만듬*/
+}
+
+.bounce-ball1 {
+    position: relative;
+    left: 100px;
+    top: 0;
+
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: black;
+
+    animation-name: bounce1;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes bounce1 {
+    to {
+        top:0;
+    }
+    from {
+        top: 300px;
+    }
+}
+
+.bounce-ball2 {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: beige;
+    position: absolute;
+    animation: bounce2 2s linear infinite;
+}
+
+@keyframes bounce2 {
+    from, to {
+        bottom: 0;
+        animation-timing-function: ease-out;
+
+    }
+
+    50% {
+        bottom: 300px;
+        animation-timing-function: ease-in;
+    }
+}
+.bounce-ball3 {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: red;
+    animation-name: bounce3;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes bounce3 {
+   from, to {
+    transform: translate(0, 0);
+   }
+    25%{
+        transform: translate(calc(100vw - 100px), 0);
+    }
+    50%{
+        transform: translate(calc(100vw - 100px), calc(100vh - 100px));
+    }
+    75%{
+        transform: translate(0, calc(100vh - 100px));
+    }
+}

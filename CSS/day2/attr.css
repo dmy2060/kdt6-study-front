@@ -1,0 +1,40 @@
+.parent {
+    width: 500px;
+    height: 200px;
+    background-color: red;
+}
+.parent .min {
+    min-width: 400px;
+    height: 100px;
+    background-color: orange;
+}
+.parent .max {
+    max-width: 400px;
+    height: 100px;
+    background-color: aquamarine;
+
+}
+
+.box {
+    background-color: rgb(218, 187, 220);
+    border: 1px solid #000;
+}
+.box-px {
+    width: 50px;
+    height: calc(50vw - 10px);
+}
+.box-view {
+    width: 50vw;
+    height: 50vw;
+}
+.box-per {
+    width: 10%;
+    height: 10%;
+}
+.rem {
+    font-size: 2rem;
+}
+
+.em {
+    font-size: 2em;
+}

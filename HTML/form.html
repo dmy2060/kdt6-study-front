@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form태그</title>
+</head>
+<body>
+   
+
+    <form>
+        <h3>설문조사</h3>
+        <label for="id01">이름</label>
+        <input type="text" id="id01">
+        <br/>
+        <label for="email">이메일</label>
+        <input type="email" id="email" placeholder="love@example.com">
+
+        <h4>나이</h4>
+        <input type="radio" name="input" id="ra1" checked/>
+        <label for="ra1">10대</label>
+        <input type="radio" name="input" id="ra2"/>
+        <label for="ra2">20대</label>
+        <input type="radio" name="input" id="ra3"/>
+        <label for="ra3">30대</label>
+        <input type="radio" name="input" id="ra4"/>
+        <label for="ra4">40대</label>
+        <input type="radio" name="input" id="ra5"/>
+        <label for="ra5">50대</label>
+        <input type="radio" name="input" id="ra6"/>
+        <label for="ra6">50대</label>
+
+        <h4>원하는 강의(복수응답가능합니다.)</h4>
+        <input type="checkbox" name="chkbox" id="ck1" checked/>
+        <label for="ch1">html</label>
+        <input type="checkbox" name="chkbox" id="ck2"/>
+        <label for="ch2">javascript</label>
+        <input type="checkbox" name="chkbox" id="ck3"/>
+        <label for="ch3">css</label>
+        <br/>
+        <br/>
+        <textarea cols="100" rows="10" placeholder="하고 싶은 말을 써주세요:)"></textarea>
+        <input type="submit" value="제출">
+
+    </form>
+</body>
+</html>
