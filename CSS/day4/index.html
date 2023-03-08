@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .parent {
+            width: 300px;
+            height: 300px;
+            background-color: aquamarine;
+            margin-bottom: 10px;
+        }
+        .child {
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+        }
+        .parent1 {
+            position: relative;
+        }
+        .child1 {
+            position: absolute;
+            margin: auto;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+        .parent2 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .child2 {}
+
+        .parent3 {
+            position: relative;
+        }
+        .child3 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+    <h3>position & margin:auto</h3>
+    <div class="parent parent1">
+        <div class="child child1"></div>
+    </div>
+    <h3>flex</h3>
+    <div class="parent parent2">
+        <div class="child child2"></div>
+    </div>
+    <h3>position & transform</h3>
+    <div class="parent parent3">
+        <div class="child child3"></div>
+    </div>
+</body>
+</html>
