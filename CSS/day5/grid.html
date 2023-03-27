@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .row{
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            /* grid-template-columns: 1fr 2fr; */
+            /* grid-template-columns: 100px 200px; */
+            /* grid-template-rows: ; */
+
+            /* height 있어야함, 세로 기준! */
+            height: 600px;
+            /* 한줄의 높이 정의 */
+            /* grid-template-rows: 100px; */
+            /* grid-template-rows :minmax(100px, auto); */
+            /* gird */
+            grid-auto-rows: (100px, auto);
+        }
+       
+        /* .row > div:nth-child(2){
+            background-color: antiquewhite;
+            grid-column: 2 / span 2;
+            grid-row: 1/3;
+        } */
+        /* .row > div:nth-child(2){
+            background-color: antiquewhite;
+            grid-column: auto / span 2;
+            grid-row: auto/ span 3;
+        } */
+        /* .row > div:nth-child(2){
+            background-color: antiquewhite;
+            grid-column: 2 / 4;
+            grid-row: 1/3;
+        } */
+        
+    </style>
+</head>
+<body>
+    <div class="row">
+        <div>가</div>
+        <div>나</div>
+        <div>다</div>
+        <div>라</div>
+        <div>마</div>
+        <div>바</div>
+    </div>
+</body>
+</html>

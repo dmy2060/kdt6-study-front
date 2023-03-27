@@ -82,3 +82,5 @@ console.log(num1 + num2);
 console.log(num1 - num2);
 console.log(num1 * num2);
 console.log(num1 / num2);
+
+// 함수선언식 - > 호이스팅 가능, 단, 함수 표현식 -> 호이스팅 불가
