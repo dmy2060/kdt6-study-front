@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>실습1. get으로 정보받기</h1>
+    <form action="/result1" method="get">
+      <label for="name1">이름</label>
+      <input type="text" name="name" id="name1" />
+      <fieldset>
+        <legend>성별</legend>
+        <input type="radio" name="radio" id="rd1" value="male" />
+        <label for="rd1">남자</label>
+        <input type="radio" name="radio" id="rd2" value="female" />
+        <label for="rd2">여자</label>
+      </fieldset>
+      <fieldset>
+        <legend>생년월일</legend>
+        <select name="year" id="sel1">
+          <option value="2010">2010</option>
+          <option value=""></option>
+        </select>
+        <label for="sel1">년</label>
+        <select name="month" id="sel2">
+          <option value="1">1</option>
+          <option value=""></option>
+        </select>
+        <label for="sel2">월</label>
+        <select name="day" id="sel3">
+          <option value="1">1</option>
+          <option value=""></option>
+        </select>
+        <label for="sel3">일</label>
+      </fieldset>
+      <fieldset>
+        <legend>관심사</legend>
+        <input type="checkbox" name="checkbox" id="chk1" value="travle" />
+        <label for="chk1">여행</label>
+        <input type="checkbox" name="checkbox" id="chk2" value="fashion" />
+        <label for="chk2">패션</label>
+        <input type="checkbox" name="checkbox" id="chk2" value="food" />
+        <label for="chk2">음식</label>
+      </fieldset>
+      <button type="submit">회원가입</button>
+    </form>
+  </body>
+</html>

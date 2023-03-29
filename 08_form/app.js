@@ -44,6 +44,24 @@ app.post("/postForm", function (req, res) {
   });
 });
 
+app.get("/practice1", (req, res) => {
+  res.render("practice1");
+});
+
+app.get("/practice2", (req, res) => {
+  res.render("practice2");
+});
+
+app.get("/result1", function (req, res) {
+  console.log(req.query);
+  res.render("result1", { title: "실습 1", info: req.query });
+});
+
+app.post("/result2", function (req, res) {
+  console.log(req.body);
+  res.render("result1", { title: "실습 2", info: req.body });
+});
+
 app.listen(PORT, () => {
   console.log("웹 서버 실행!!");
   console.log(`http://localhost:${PORT}`);
