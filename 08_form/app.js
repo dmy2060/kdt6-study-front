@@ -25,13 +25,23 @@ app.get("/", (req, res) => {
 app.get("/getForm", function (req, res) {
   // console.log(req);  { xx: {},  yy: {}, ... query: { id: 'sean', pw: '1234' }}
   console.log(req.query); //{ id: 'ddd', pw: 'ddd' }
-  res.send("get 요청 성공!!!");
+  // res.send("get 요청 성공!!!");
+
+  res.render("result", {
+    title: "GET 요청 폼 결과 확인하기",
+    info: req.query,
+  });
 });
 
 app.post("/postForm", function (req, res) {
   console.log(req.body);
   //   console.log(req.query);
-  res.send("post 요청 성공!!!");
+  // res.send("post 요청 성공!!!");
+
+  res.render("result", {
+    title: "POST 요청 폼 결과 확인하기",
+    info: req.body,
+  });
 });
 
 app.listen(PORT, () => {
