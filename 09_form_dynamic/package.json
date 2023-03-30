@@ -1,7 +1,7 @@
 {
-  "name": "08_form_practice",
+  "name": "09_form_dynamic",
   "version": "1.0.0",
-  "description": "08_form_practice 실습",
+  "description": "09_form_dynamic 동적 form 전송 실습",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
