@@ -22,26 +22,22 @@ app.get("/", (req, res) => {
 // 객체를 객체로 보내줌
 // 키 값은 변수로 받아서도 사용 가능함
 
-app.get("/getForm", function (req, res) {
-  // console.log(req);  { xx: {},  yy: {}, ... query: { id: 'sean', pw: '1234' }}
-  console.log(req.query); //{ id: 'ddd', pw: 'ddd' }
-  // res.send("get 요청 성공!!!");
-
-  res.render("result", {
-    title: "GET 요청 폼 결과 확인하기",
-    info: req.query,
-  });
+app.get("/practice1", (req, res) => {
+  res.render("practice1");
 });
 
-app.post("/postForm", function (req, res) {
-  console.log(req.body);
-  //   console.log(req.query);
-  // res.send("post 요청 성공!!!");
+app.get("/practice2", (req, res) => {
+  res.render("practice2");
+});
 
-  res.render("result", {
-    title: "POST 요청 폼 결과 확인하기",
-    info: req.body,
-  });
+app.get("/result1", function (req, res) {
+  console.log(req.query);
+  res.render("result1", { title: "실습 1", info: req.query });
+});
+
+app.post("/result2", function (req, res) {
+  console.log(req.body);
+  res.render("result1", { title: "실습 2", info: req.body });
 });
 
 app.listen(PORT, () => {
