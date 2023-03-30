@@ -4,6 +4,7 @@ const PORT = 8000;
 
 app.set("view engine", "ejs"); // view engine 등록
 app.use("/views", express.static(__dirname + "/views")); // ejs를 담을 views 폴더 경로 설정
+// 아래 두개는 꼭 써줘야함
 app.use(express.urlencoded({ extended: true })); // post 요청으로 들어오는 모든 형식의 데이터를 파싱(분석)/ 보통 라우팅 이전에 선언
 app.use(express.json()); // json(확장자 중 하나) 형태로 데이터를 주고 받음
 

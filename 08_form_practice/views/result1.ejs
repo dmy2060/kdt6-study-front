@@ -9,15 +9,15 @@
   <body>
     <h1><%= title %> 폼 전송 완료!</h1>
     <ul>
-      <li>이름 : <%=info.name%></li>
-      <li>성별 :<%=info.radio%></li>
-      <li>생년월일 :<%=info.year%>-<%=info.month%>-<%=info.day%></li>
-      <li>관심사 :<%=info.checkbox%></li>
-      <% if(info.color) {%>
-      <li>좋아하는 색상 : <%=info.color%></li>
-      <%}%> <% if(info.number) {%>
-      <li>좋아하는 숫자 : <%=info.number%></li>
-      <%}%>
+      <li>이름 : <%= info.name %></li>
+      <li>성별 :<%= info.radio %></li>
+      <li>생년월일 :<%= info.year %>-<%= info.month %>-<%= info.day %></li>
+      <li>관심사 :<%= info.checkbox %></li>
+      <% if(info.color) { %>
+      <li>좋아하는 색상 : <%= info.color %></li>
+      <% } %> <% if(info.number) { %>
+      <li>좋아하는 숫자 : <%= info.number %></li>
+      <% } %>
     </ul>
     <a href="/">홈으로 이동</a>
   </body>
