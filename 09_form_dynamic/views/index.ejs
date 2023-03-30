@@ -1,12 +1,196 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>동적 폼 전송 실습</title>
+    <!-- ajax 실습을 위해 jquery cdn 추가 -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.4.min.js"
+      integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+      crossorigin="anonymous"
+    ></script>
+    <!-- axios 실습을 위해 axios cdn 추가 -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <style>
+      .result {
+        margin-top: 20px;
+        font-size: 24px;
+        font-weight: 700;
+      }
+    </style>
   </head>
   <body>
-    실행 완료
+    <h1>동적 폼 전송 실습</h1>
+    <!-- 페이지 전환없이 작업하기 위해 action 값은 따로 설정하지 않음 -->
+    <form name="register">
+      <label for="name">이름</label>
+      <input type="text" name="name" id="name" />
+      <br />
+      성별
+      <input type="radio" name="gender" id="male" value="남자" />
+      <label for="male">남자</label>
+      <input type="radio" name="gender" id="female" value="여자" />
+      <label for="female">여자</label>
+      <br />
+      <br />
+      <br />
+      <button type="button" onclick="ajaxGet();">ajax get 버튼</button>
+      <button type="button" onclick="ajaxPost();">ajax post 버튼</button>
+      <button type="button" onclick="axiosGet();">axios get 버튼</button>
+      <button type="button" onclick="axiosPost();">axios post 버튼</button>
+    </form>
+
+    <div class="result"></div>
+
+    <script>
+      const resultBox = document.querySelector(".result");
+      function ajaxGet() {
+        console.log("click ajaxGet btn!!");
+        // 폼 선택하기
+        const form = document.forms["register"];
+        console.log(form);
+
+        // dir은 객체화 해서 보여줌, 폼 요소 값 확인하기 위해 사용
+        console.dir(form.name);
+        console.dir(form.gender);
+        console.dir(form.name.value); // input에 입력한 값
+        console.dir(form.gender.value); // 라디오버튼 선택한 값
+
+        // 서버에 전송할 폼 입력값을 저장하는 객체
+        const formInfo = {
+          name: form.name.value,
+          gender: form.gender.value,
+        };
+
+        $.ajax({
+          url: "/ajax", //요청 주소
+          type: "get", //요청 방법
+          data: formInfo, //데이터 어떻게 가져올지
+          success: function (data) {
+            console.log(data);
+            resultBox.innerText = `Get/ ajax 요청 완료!! ${data.name}님은 ${data.gender}이시죠?!`;
+            resultBox.style.color = "blue";
+          },
+        });
+      }
+
+      function ajaxPost() {
+        console.log("click ajaxPost btn!!");
+
+        // 폼 선택하기
+        const form = document.forms["register"];
+        console.log(form);
+
+        // dir은 객체화 해서 보여줌, 폼 요소 값 확인하기 위해 사용
+        console.dir(form.name);
+        console.dir(form.gender);
+        console.dir(form.name.value); // input에 입력한 값
+        console.dir(form.gender.value); // 라디오버튼 선택한 값
+
+        // 서버에 전송할 폼 입력값을 저장하는 객체
+        const formInfo = {
+          name: form.name.value,
+          gender: form.gender.value,
+        };
+
+        // ajax post 요청 보내기
+        $.ajax({
+          url: "/ajax",
+          type: "POST",
+          data: formInfo,
+          success: (data) => {
+            console.log(data);
+            resultBox.innerText = `Post/ ajax 요청 완료!! ${data.name}님은 ${data.gender}이시죠?!`;
+            resultBox.style.color = "orange";
+          },
+        });
+      }
+
+      async function axiosGet() {
+        console.log("click axiosGet btn!!");
+        // 폼 선택하기
+        const form = document.forms["register"];
+
+        // 서버에 전송할 폼 입력값을 저장하는 객체
+        const formInfo = {
+          name: form.name.value,
+          gender: form.gender.value,
+        };
+
+        // axios는 결과로 promise를 리턴
+        // 따라서, then()을 사용 가능
+        // axios({
+        //   url: "/axios",
+        //   method: "GET",
+        //   params: formInfo, // GET 요청은 params에 저장!!
+        // })
+        //   .then((response) => {
+        //     console.log(response.data);
+        //     resultBox.innerHTML = `Get/ axios 요청 완료!! ${response.data.name}님은 ${response.data.gender}이시죠?!`;
+        //     resultBox.style.color = "green";
+        //   })
+        //   .catch((error) => {
+        //     console.log(error, "Error!");
+        //   });
+
+        // async/await 로 axios 요청 처리하기(promise 기반이기때문에 가능!)
+        try {
+          const response = await axios({
+            url: "/axios",
+            method: "GET",
+            params: formInfo, // GET 요청은 params에 저장!!
+          });
+
+          console.log(response.data);
+          resultBox.innerHTML = `Get/ axios 요청 완료!! ${response.data.name}님은 ${response.data.gender}이시죠?!`;
+          resultBox.style.color = "green";
+        } catch (error) {
+          console.log("Error", error.message);
+          resultBox.innerHTML = error.message;
+        }
+      }
+
+      async function axiosPost() {
+        console.log("click axiosPost btn!!");
+        // 폼 선택하기
+        const form = document.forms["register"];
+
+        // 서버에 전송할 폼 입력값을 저장하는 객체
+        const formInfo = {
+          name: form.name.value,
+          gender: form.gender.value,
+        };
+
+        // axios({
+        //   url: "/axios",
+        //   method: "POST",
+        //   data: formInfo, // POST 요청은 data 키 값에 담아서 보내기
+        // })
+        //   .then((response) => {
+        //     console.log(response.data);
+        //     resultBox.innerHTML = `Post/ axios 요청 완료!! ${response.data.name}님은 ${response.data.gender}이시죠?!`;
+        //     resultBox.style.color = "red";
+        //   })
+        //   .catch((error) => {
+        //     console.log("Error!", error);
+        //   });
+        try {
+          const response = await axios({
+            url: "/axios",
+            method: "POST",
+            data: formInfo, // POST 요청은 data 키 값에 담아서 보내기
+          });
+          console.log(response.data);
+          resultBox.innerHTML = `Post/ axios(await) 요청 완료!! ${response.data.name}님은 ${response.data.gender}이시죠?!`;
+          resultBox.style.color = "red";
+        } catch (error) {
+          console.log("error!!!");
+        }
+      }
+    </script>
   </body>
 </html>
