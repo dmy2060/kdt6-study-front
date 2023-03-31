@@ -35,6 +35,28 @@ app.post("/axios", (req, res) => {
   res.send(req.body);
 });
 
+app.get("/practice1", (req, res) => {
+  res.render("practice1");
+});
+
+app.get("/axiosTest", (req, res) => {
+  console.log(req.query);
+  res.send(req.query);
+});
+
+const loginId = "banana";
+const loginPw = "4321";
+
+app.post("/axiosTest", (req, res) => {
+  console.log(req.body);
+  console.log(req.body.id);
+
+  if (loginId == req.body.id && loginPw == req.body.pw) {
+    res.send(req.body);
+  } else {
+    res.send("오류");
+  }
+});
 app.listen(PORT, () => {
   console.log("09_form_dynamic 서버 실행");
   console.log(`http://localhost:${PORT}`);

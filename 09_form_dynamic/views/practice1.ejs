@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <h1>실습1. axios get 회원가입</h1>
+    <form name="register">
+      <label for="name1">이름</label>
+      <input type="text" name="name" id="name1" required />
+      <fieldset>
+        <legend>성별</legend>
+        <input type="radio" name="radio" id="rd1" value="male" />
+        <label for="rd1">남자</label>
+        <input type="radio" name="radio" id="rd2" value="female" />
+        <label for="rd2">여자</label>
+      </fieldset>
+      <fieldset>
+        <legend>생년월일</legend>
+        <select name="year" id="sel1">
+          <%for (let i = 0; i <50; i++) {%>
+          <option value="<%= 2010 - i %>"><%= 2010 - i %></option>
+          <%}%>
+        </select>
+        <label for="sel1">년</label>
+        <select name="month" id="sel2">
+          <%for (let i = 1; i <13; i++) {%>
+          <option value="<%= i %>"><%= i %></option>
+          <%}%>
+        </select>
+        <label for="sel2">월</label>
+        <select name="day" id="sel3">
+          <%for (let i = 1; i <31; i++) {%>
+          <option value="<%= i %>"><%= i %></option>
+          <%}%>
+        </select>
+        <label for="sel3">일</label>
+      </fieldset>
+      <fieldset>
+        <legend>관심사</legend>
+        <input type="checkbox" name="checkbox" id="chk1" value="travle" />
+        <label for="chk1">여행</label>
+        <input type="checkbox" name="checkbox" id="chk2" value="fashion" />
+        <label for="chk2">패션</label>
+        <input type="checkbox" name="checkbox" id="chk2" value="food" />
+        <label for="chk2">음식</label>
+      </fieldset>
+      <button type="button" onclick="getBtn()">회원가입</button>
+    </form>
+    <div class="result"></div>
+
+    <hr />
+    <h1>실습2. axios post 로그인</h1>
+    <p>
+      (참고) app.js에 저장한 아이디는 banana이고, 비밀번호는 4321입니다.
+      아이디와 비밀번호가 일치할 때와 불일치할 때 어떻게 다른지 확인해보세요!!
+    </p>
+    <form name="loginRegister">
+      <label for="id">아이디</label>
+      <input type="text" name="id" id="id" />
+      <label for="pw">비밀번호</label>
+      <input type="password" name="pw" id="pw" />
+      <button type="button" onclick="loginBtn()">로그인</button>
+    </form>
+    <div class="result1"></div>
+
+    <script>
+      const resultText = document.querySelector(".result");
+      const resultText1 = document.querySelector(".result1");
+
+      function getBtn() {
+        const form = document.forms["register"];
+        console.log(form);
+
+        const formInfo = {
+          name: form.name.value,
+        };
+        axios({
+          url: "/axiosTest",
+          method: "GET",
+          params: formInfo,
+        }).then((response) => {
+          console.log(response);
+          resultText.innerText = `${response.data.name} 님 환영합니다! 가입이 완료되었습니다.🎉`;
+        });
+      }
+
+      function loginBtn() {
+        const form = document.forms["loginRegister"];
+        // console.log(form);
+        // console.dir(form.id.value);
+        // console.dir(form.pw.value);
+
+        const formInfo = {
+          id: form.id.value,
+          pw: form.pw.value,
+        };
+        axios({
+          url: "/axiosTest",
+          method: "POST",
+          data: formInfo,
+        }).then((response) => {
+          console.log(response.data);
+          if (response.data != "오류") {
+            resultText1.innerHTML = `${response.data.id}님! 로그인 성공😁`;
+          } else {
+            resultText1.innerHTML = `아이디 또는 패스워드 오류😥`;
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
