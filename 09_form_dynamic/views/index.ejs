@@ -42,6 +42,7 @@
       <button type="button" onclick="ajaxPost();">ajax post 버튼</button>
       <button type="button" onclick="axiosGet();">axios get 버튼</button>
       <button type="button" onclick="axiosPost();">axios post 버튼</button>
+      <button type="button" onclick="fetchGet();">fetch get 버튼</button>
     </form>
 
     <div class="result"></div>
@@ -190,6 +191,18 @@
         } catch (error) {
           console.log("error!!!");
         }
+      }
+
+      function fetchGet() {
+        console.log("click fetchGet btn!!");
+
+        const form = document.forms["register"];
+        const urlQuery = `name=${form.name.value}&gender=${form.gender.value}`;
+
+        //fetch(url, options)
+        fetch(`/fetch${urlQuery}`, {
+          method: "GET",
+        });
       }
     </script>
   </body>
