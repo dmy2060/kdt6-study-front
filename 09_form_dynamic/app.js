@@ -35,6 +35,16 @@ app.post("/axios", (req, res) => {
   res.send(req.body);
 });
 
+// 3-1. /fetch get 요청
+app.get("/fetch", (req, res) => {
+  console.log(req.query);
+  res.send(req.query);
+});
+
+app.post("/fetch", (req, res) => {
+  console.log(req.body);
+  res.send(req.body);
+});
 app.listen(PORT, () => {
   console.log("09_form_dynamic 서버 실행");
   console.log(`http://localhost:${PORT}`);
