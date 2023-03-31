@@ -56,9 +56,18 @@ app.post("/axiosTest", (req, res) => {
   // } else {
   //   res.send("오류");
   // }
-  loginId == req.body.id && loginPw == req.body.pw
-    ? res.send(req.body)
-    : res.send("오류");
+  // loginId === req.body.id && loginPw === req.body.pw
+  //   ? res.send(req.body)
+  //   : res.send("오류");
+
+  // 풀이
+  // 로그인 성공시 => response.data =>{isLogin: true, userInfo: {…}}
+  // 성공과 오류의 키값을 따로 보내서 if문으로 판단
+  if (loginId == req.body.id && loginPw == req.body.pw) {
+    res.send({ isLogin: true, userInfo: req.body });
+  } else {
+    res.send({ isLogin: false });
+  }
 });
 app.listen(PORT, () => {
   console.log("09_form_dynamic 서버 실행");

@@ -6,6 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <style>
+      .success {
+        color: blue;
+        font-weight: 700;
+      }
+      .error {
+        color: red;
+        font-weight: 700;
+      }
+    </style>
   </head>
   <body>
     <h1>실습1. axios get 회원가입</h1>
@@ -110,11 +120,18 @@
           method: "POST",
           data: formInfo,
         }).then((response) => {
+          // 로그인 성공시 => response.data =>{isLogin: true, userInfo: {…}}
+          // 로그인 실패시 => response.data => {isLogin: false}
+          // 성공과 오류를 키값으로 판단해서 if문 작성
           console.log(response.data);
-          if (response.data != "오류") {
-            resultText1.innerHTML = `${response.data.id}님! 로그인 성공😁`;
+          if (response.data.isLogin) {
+            resultText1.innerHTML = `${response.data.userInfo.id}님! 로그인 성공😁`;
+            resultText1.classList.remove("error");
+            resultText1.classList.add("success");
           } else {
             resultText1.innerHTML = `아이디 또는 패스워드 오류😥`;
+            resultText1.classList.remove("success");
+            resultText1.classList.add("error");
           }
         });
       }
