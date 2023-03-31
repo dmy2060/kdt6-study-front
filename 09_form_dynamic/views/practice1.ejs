@@ -42,13 +42,14 @@
       </fieldset>
       <fieldset>
         <legend>관심사</legend>
-        <input type="checkbox" name="checkbox" id="chk1" value="travle" />
-        <label for="chk1">여행</label>
-        <input type="checkbox" name="checkbox" id="chk2" value="fashion" />
-        <label for="chk2">패션</label>
-        <input type="checkbox" name="checkbox" id="chk2" value="food" />
-        <label for="chk2">음식</label>
+        <input type="checkbox" id="travle" name="hobby" value="travle" />
+        <label for="travle">여행</label>
+        <input type="checkbox" id="fashion" name="hobby" value="fashion" />
+        <label for="fashion">패션</label>
+        <input type="checkbox" id="food" name="hobby" value="food" />
+        <label for="food">음식</label>
       </fieldset>
+      <br />
       <button type="button" onclick="getBtn()">회원가입</button>
     </form>
     <div class="result"></div>
@@ -75,9 +76,14 @@
       function getBtn() {
         const form = document.forms["register"];
         console.log(form);
-
+        console.log(form.hobby.value);
+        console.dir(form.hobby);
         const formInfo = {
           name: form.name.value,
+          radio: form.radio.value,
+          year: form.year.value,
+          month: form.month.value,
+          day: form.day.value,
         };
         axios({
           url: "/axiosTest",

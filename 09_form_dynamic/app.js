@@ -51,11 +51,14 @@ app.post("/axiosTest", (req, res) => {
   console.log(req.body);
   console.log(req.body.id);
 
-  if (loginId == req.body.id && loginPw == req.body.pw) {
-    res.send(req.body);
-  } else {
-    res.send("오류");
-  }
+  // if (loginId == req.body.id && loginPw == req.body.pw) {
+  //   res.send(req.body);
+  // } else {
+  //   res.send("오류");
+  // }
+  loginId == req.body.id && loginPw == req.body.pw
+    ? res.send(req.body)
+    : res.send("오류");
 });
 app.listen(PORT, () => {
   console.log("09_form_dynamic 서버 실행");
