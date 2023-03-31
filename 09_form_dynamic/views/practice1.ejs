@@ -86,14 +86,23 @@
       function getBtn() {
         const form = document.forms["register"];
         console.log(form);
-        console.log(form.hobby.value);
-        console.dir(form.hobby);
+        const chkList = document.getElementsByName("hobby");
+        const chkList1 = [];
+        for (let i = 0; i < chkList.length; i++) {
+          const chkCheck = chkList[i].checked;
+          if (chkCheck) {
+            chkList1.push(chkList[i].value);
+          }
+        }
+
+        // console.log(chkList);
         const formInfo = {
           name: form.name.value,
           radio: form.radio.value,
           year: form.year.value,
           month: form.month.value,
           day: form.day.value,
+          checkbox: chkList1,
         };
         axios({
           url: "/axiosTest",
