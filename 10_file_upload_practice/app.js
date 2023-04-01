@@ -12,7 +12,9 @@ const uploadDetail = multer({
     },
     filename(req, file, done) {
       const ext = path.extname(file.originalname);
-      done(null, path.basename(req.body.id, ext) + ext);
+      // done(null, path.basename(req.body.id, ext) + ext);
+      // [유저 아이디값 + 현재시간 + 확장자] 형식
+      done(null, req.body.id + Date.now() + ext);
     },
   }),
   limits: { fileSize: 5 * 1024 * 1024 },
