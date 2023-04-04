@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>메인페이지</title>
+  </head>
+  <body>
+    <h1>실습2. axios post 로그인</h1>
+    <p>
+      (참고) app.js에 저장한 아이디는 banana이고, 비밀번호는 4321입니다.
+      아이디와 비밀번호가 일치할 때와 불일치할 때 어떻게 다른지 확인해보세요!!
+    </p>
+    <form name="loginRegister">
+      <label for="id">아이디</label>
+      <input type="text" name="id" id="id" />
+      <label for="pw">비밀번호</label>
+      <input type="password" name="pw" id="pw" />
+      <button type="button" onclick="loginBtn()">로그인</button>
+    </form>
+    <div class="result1"></div>
+  </body>
+  <script>
+    const resultText1 = document.querySelector(".result1");
+    function loginBtn() {
+      const form = document.forms["loginRegister"];
+      // console.log(form);
+      // console.dir(form.id.value);
+      // console.dir(form.pw.value);
+
+      const formInfo = {
+        id: form.id.value,
+        pw: form.pw.value,
+      };
+      axios({
+        url: "/axiosTest",
+        method: "POST",
+        data: formInfo,
+      }).then((response) => {
+        // 로그인 성공시 => response.data =>{isLogin: true, userInfo: {…}}
+        // 로그인 실패시 => response.data => {isLogin: false}
+        // 성공과 오류를 키값으로 판단해서 if문 작성
+        console.log(response.data);
+        // if (response.data.isLogin) {
+        //   resultText1.innerHTML = `${response.data.userInfo.id}님! 로그인 성공😁`;
+        //   resultText1.classList.remove("error");
+        //   resultText1.classList.add("success");
+        // } else {
+        //   resultText1.innerHTML = `아이디 또는 패스워드 오류😥`;
+        //   resultText1.classList.remove("success");
+        //   resultText1.classList.add("error");
+        // }
+
+        if (response.data.isLogin) {
+          resultText1.innerHTML = `${response.data.userName}님! 로그인 성공😁`;
+          resultText1.classList.remove("error");
+          resultText1.classList.add("success");
+        } else {
+          resultText1.innerHTML = `아이디 또는 패스워드 오류😥`;
+          resultText1.classList.remove("success");
+          resultText1.classList.add("error");
+        }
+      });
+    }
+  </script>
+</html>

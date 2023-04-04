@@ -1,7 +1,8 @@
 {
-  "name": "09_form_dynamic_practice",
+  "name": "12_mvc_practice",
   "version": "1.0.0",
-  "main": "app.js",
+  "description": "",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,8 +11,6 @@
   "license": "ISC",
   "dependencies": {
     "ejs": "^3.1.9",
-    "experss": "^0.0.1-security",
     "express": "^4.18.2"
-  },
-  "description": ""
+  }
 }
