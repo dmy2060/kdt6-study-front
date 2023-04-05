@@ -8,7 +8,7 @@ exports.main = (req, res) => {
 //   console.log(req.body);
 //   console.log(req.body.id);
 // 선택 실습 방법
-//   const users = Uesr.users.split("\n");
+//   const users = User.users.split("\n");
 //   let flag = false;
 //   let userInfos;
 //   for (let i = 0; i < users.length; i++) {
