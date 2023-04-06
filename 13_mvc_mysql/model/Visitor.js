@@ -59,3 +59,31 @@ exports.deleteVisitor = (id, callback) => {
     callback(true);
   });
 };
+
+exports.getVisitor = (id, callback) => {
+  console.log(id); // controller에서 보내주는 req.query.id
+
+  const sql = `select * from visitor where id=${id}`;
+  conn.query(sql, (err, rows) => {
+    if (err) {
+      throw err;
+    }
+    console.log("Visitor.js >>", rows); // [ {} ]
+    callback(rows[0]); // {} 객체만 넘겨주기위해서 인덱싱함.
+  });
+};
+
+exports.patchVisitor = (data, callback) => {
+  console.log(data); // contraller에서 넘겨주는 req.body
+
+  const sql = `update visitor set name='${data.name}', comment='${data.comment}' WHERE id=${data.id}`;
+  conn.query(sql, (err, rows) => {
+    if (err) {
+      throw err;
+    }
+
+    console.log("Visitor.js >>", rows);
+    callback();
+    //patch는 안넘겨줘도됨!
+  });
+};
