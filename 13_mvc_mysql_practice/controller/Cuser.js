@@ -1,11 +1,11 @@
-const User = require('../model/User');
+const User = require("../model/User");
 
 exports.index = (req, res) => {
-  res.render('index');
+  res.render("index");
 };
 
 exports.signup = (req, res) => {
-  res.render('signup');
+  res.render("signup");
 };
 
 exports.post_signup = (req, res) => {
@@ -15,13 +15,13 @@ exports.post_signup = (req, res) => {
 };
 
 exports.signin = (req, res) => {
-  res.render('signin');
+  res.render("signin");
 };
 
 exports.post_signin = (req, res) => {
   console.log(req.body);
   User.post_signin(req.body, (result) => {
-    console.log('Controller post_sign: ', result); // [ RowDataPacket { id: 'sean', name: 'sean', pw: '1234' } ]
+    console.log("Controller post_sign: ", result); // [ RowDataPacket { id: 'sean', name: 'sean', pw: '1234' } ]
 
     if (result.length > 0) {
       res.send(true);
@@ -39,10 +39,10 @@ exports.post_profile = (req, res) => {
 
     if (result.length > 0) {
       // 로그인 성공; views/profile.ejs 렌더링
-      res.render('profile', { data: result[0] });
+      res.render("profile", { data: result[0] });
     } else {
       // 로그인 실패; /user/signin 현재 주소 다시 접속
-      res.redirect('/user/signin');
+      res.redirect("/user/signin");
     }
   });
 };
@@ -50,7 +50,7 @@ exports.post_profile = (req, res) => {
 exports.edit_profile = (req, res) => {
   console.log(req.body);
   User.edit_profile(req.body, () => {
-    res.send('회원정보 수정 성공!');
+    res.send("회원정보 수정 성공!");
   });
 };
 

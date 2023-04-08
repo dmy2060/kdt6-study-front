@@ -1,10 +1,10 @@
-const mysql = require('mysql');
+const mysql = require("mysql");
 
 const conn = mysql.createConnection({
-  host: 'localhost',
-  user: 'user',
-  password: '1234',
-  database: 'kdt',
+  host: "localhost",
+  user: "user",
+  password: "1234",
+  database: "codingon",
 });
 
 exports.post_signup = (data, cb) => {
@@ -14,7 +14,7 @@ exports.post_signup = (data, cb) => {
       throw err;
     }
 
-    console.log('post_singup', rows);
+    console.log("post_singup", rows);
     // OkPacket {
     //     fieldCount: 0,
     //     affectedRows: 1,
@@ -49,7 +49,7 @@ exports.post_profile = (userid, cb) => {
       throw err;
     }
 
-    console.log('Model User: ', rows); // [ {} ]
+    console.log("Model User: ", rows); // [ {} ]
     cb(rows);
   });
 };
@@ -61,7 +61,7 @@ exports.edit_profile = (data, cb) => {
       throw err;
     }
 
-    console.log('Model edit profile', rows);
+    console.log("Model edit profile", rows);
     // OkPacket {
     //   fieldCount: 0,
     //   affectedRows: 1,
