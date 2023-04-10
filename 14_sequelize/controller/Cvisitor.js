@@ -63,7 +63,8 @@ exports.post_signup = (req, res) => {
     name: req.body.name,
     pw: req.body.pw,
   }).then(() => {
-    res.send(true);
+    // res.send(true);
+    res.end(); // 데이터 없이 응답할때 사용
   });
 };
 
@@ -105,19 +106,29 @@ exports.post_profile = (req, res) => {
   });
 };
 
-exports.edit_profile = (req, res) => {
+exports.edit_profile = async (req, res) => {
   console.log(req.body);
 
-  models.User.findOne({
-    where: {
-      id: req.body.id,
+  // models.User.findOne({
+  //   where: {
+  //     id: req.body.id,
+  //   },
+  // }).then((result) => {
+  //   // console.log("dfkld", result);
+  //   result.update({ name: req.body.name, pw: req.body.pw }).then(() => {
+  //     res.send("회원정보 수정 성공!");
+  //   });
+  // });
+
+  await models.User.update(
+    {
+      userid: req.body.userid,
+      name: req.body.name,
+      pw: req.body.pw,
     },
-  }).then((result) => {
-    // console.log("dfkld", result);
-    result.update({ name: req.body.name, pw: req.body.pw }).then(() => {
-      res.send("회원정보 수정 성공!");
-    });
-  });
+    { where: { id: req.body.id } }
+  );
+  res.end();
 };
 
 exports.delete_profile = (req, res) => {
@@ -126,6 +137,6 @@ exports.delete_profile = (req, res) => {
   models.User.destroy({
     where: { id: req.body.id },
   }).then(() => {
-    res.send(true);
+    red.end();
   });
 };

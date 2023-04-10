@@ -86,7 +86,9 @@
 //   });
 // };
 
+// TODE: User 모델 정의
 const User = (Sequelize, DataTypes) => {
+  // define 파라미터 (모델이름, 데이터타입, 모델에 대한 옵션 정의)
   const model = Sequelize.define(
     "user",
     {
@@ -113,6 +115,8 @@ const User = (Sequelize, DataTypes) => {
     {
       tableName: "user",
       freezeTableName: true,
+      // 데이터 수정하고 변환할때 시간 저장하는 셀을 추가해주는 옵션
+      // 여기서는 딱히 필요하지 않아서 false로 지정
       timestamps: false,
     }
   );
