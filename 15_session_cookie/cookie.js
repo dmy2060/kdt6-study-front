@@ -61,6 +61,6 @@ app.get("/clearCookie", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log("15_session_cookie_practice 실행");
+  console.log("15_session_cookie(cookie) 실행");
   console.log(`http://localhost:${PORT}`);
 });

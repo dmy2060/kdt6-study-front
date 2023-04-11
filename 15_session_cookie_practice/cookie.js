@@ -39,7 +39,7 @@ app.post("/cookie", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log("15_session_cookie 실행");
+  console.log("15_session_cookie_practice 실행");
   console.log(`http://localhost:${PORT}`);
 });
 
