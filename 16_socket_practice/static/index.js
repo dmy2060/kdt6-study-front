@@ -1,5 +1,7 @@
 // frontend js
 
+// const session = require("express-session");
+
 // socket 사용을 위해서 객체 생성
 let socket = io.connect();
 
@@ -193,3 +195,55 @@ socket.on("newMessage", (data) => {
   // (선택) 메세지가 많아져서 스크롤이 생기더라도 하단 고정
   chatList.scrollTop = chatList.scrollHeight - chatList.clientHeight;
 });
+
+let fileInfo;
+function fileUpload() {
+  console.log("click upload btn!!!");
+  const formData = new FormData();
+  // FormData란?
+  // form 태그의 데이터를 동적으로 제어할 수 있는 기능, 보통 axios/ajax... 함께 사용함
+  // 페이지 전환 없이 '현재 페이지'에서 동적으로 파일 업로드하고 싶을 때 사용함
+  const fileInput = document.querySelector("#userfile"); // querySelector('#dynamic-file')
+  console.dir(fileInput);
+  console.log(fileInput.files);
+  console.log(fileInput.files[0]);
+
+  formData.append("userfile", fileInput.files[0]);
+
+  axios({
+    url: "/upload",
+    method: "POST",
+    data: formData,
+    headers: {
+      "Content-Type": "multipart/form-date",
+    },
+  }).then((response) => {
+    console.log(response.data.path);
+    document.querySelector(".profile-img img").src = `/${response.data.path}`;
+    fileInfo = response;
+  });
+}
+
+let sessionId;
+function profileSet() {
+  console.log(fileInfo);
+  console.log(document.querySelector("#nickname").value);
+
+  const profileData = {
+    nick: document.querySelector("#nickname").value,
+    fileInfo: fileInfo.data,
+  };
+  // console.log(docu);
+  axios({
+    url: "/pofileSet",
+    method: "POST",
+    data: profileData,
+  }).then((res) => {
+    console.log(res);
+    document.querySelector(".dim-layer").style.display = "none";
+    document.querySelector(".pofile img").src = `${res.data.fileInfo}`;
+    document.querySelector(".nic").innerHTML = `${res.data.name}`;
+    sessionId = `${res.data.sessionId}`;
+    console.log(sessionId);
+  });
+}

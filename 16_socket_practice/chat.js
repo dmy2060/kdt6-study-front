@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const session = require("express-session");
 // socket.io 불러오는 기본 셋팅
 const http = require("http").Server(app);
 const io = require("socket.io")(http);
@@ -8,10 +9,64 @@ const PORT = 8000;
 app.set("view engine", "ejs");
 app.use("/views", express.static(__dirname + "/views"));
 app.use("/static", express.static(__dirname + "/static"));
+app.use("/uploads", express.static(__dirname + "/uploads"));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 app.get("/", (req, res) => {
   console.log("client connected");
-  res.render("chat");
+  res.render("chat", {
+    session: req.sessionID,
+  });
+});
+
+// multer 미들웨어 사용하기
+const multer = require("multer"); // multer 불러오기
+const path = require("path"); // path 불러오기 (내장 모듈) => 파일, 폴더 경로를 쉽게 설정
+// const upload = multer({
+//   dest: "uploads/", // dest: 업로드할 파일 경로 지정
+// });
+// multer 세부 설정
+const uploadDetail = multer({
+  storage: multer.diskStorage({
+    destination(req, file, done) {
+      // destination: 경로 설정
+      // done: callback 함수
+      done(null, "uploads/");
+    },
+    filename(req, file, done) {
+      const ext = path.extname(file.originalname);
+      done(null, path.basename(file.originalname, ext) + Date.now() + ext);
+    },
+  }),
+  limits: { fileSize: 5 * 1024 * 1024 }, // 5MB로 파일 크기 제한
+});
+
+app.post("/upload", uploadDetail.single("userfile"), (req, res) => {
+  console.log(req.file); // 업로드한 파일 정보는 여기 존재
+
+  console.log(req.body); // 폼에 입력한 정보 (파일은 없음)
+
+  res.send(req.file);
+});
+
+app.use(
+  session({
+    secret: "sucssecs", // 필수 옵션 (세선 암호화 할 때 쓰이는 키)
+    resave: false,
+    saveUninitialized: false, // 일반적으로 false 지정
+  })
+);
+
+app.post("/pofileSet", (req, res) => {
+  req.session.name = req.body.nick;
+  console.log(req.sessionID);
+  const userInfo = {
+    name: req.session.name,
+    sessionId: req.sessionID,
+    fileInfo: req.body.fileInfo.path,
+  };
+  res.send(userInfo);
 });
 
 // 닉네임을 저장할 객체
