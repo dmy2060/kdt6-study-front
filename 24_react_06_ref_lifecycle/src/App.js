@@ -2,11 +2,15 @@
 // import RefSample2 from "./RefSample2";
 // import RefSample3 from "./RefSample3";
 // import RefSample4 from "./RefSample4";
-import Prob1 from "./Prob1";
+// import Prob1 from "./Prob1";
+import LifeCycleFunc from "./LifeCycleFunc";
+// import LifeCycleClass from "./LifeCycleClass";
 function App() {
   return (
     <div className="App">
-      <Prob1 />
+      {/* <Prob1 /> */}
+      <LifeCycleFunc />
+      {/* <LifeCycleClass /> */}
     </div>
   );
 }
