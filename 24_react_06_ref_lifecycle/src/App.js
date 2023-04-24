@@ -3,14 +3,16 @@
 // import RefSample3 from "./RefSample3";
 // import RefSample4 from "./RefSample4";
 // import Prob1 from "./Prob1";
-import LifeCycleFunc from "./LifeCycleFunc";
+// import LifeCycleFunc from "./LifeCycleFunc";
 // import LifeCycleClass from "./LifeCycleClass";
+import PostList from "./PostList";
 function App() {
   return (
     <div className="App">
       {/* <Prob1 /> */}
-      <LifeCycleFunc />
+      {/* <LifeCycleFunc /> */}
       {/* <LifeCycleClass /> */}
+      <PostList />
     </div>
   );
 }
