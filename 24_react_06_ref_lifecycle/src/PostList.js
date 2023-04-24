@@ -113,6 +113,9 @@ const PostList = () => {
   const dataLoading = () => {
     return <h2>Loading...</h2>;
   };
+
+  // 배열
+  // 함수는 map 메서드의 콜백함수
   const dataLoaded = posts.map((post) => {
     return <PostItem post={post} key={post.id} />;
   });
