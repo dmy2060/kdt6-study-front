@@ -7,9 +7,12 @@ const PostItem = ({ post }) => {
     <div className="PostItem">
       <div>
         <span className="id">No. {post.id}</span>
-        <span className="title">{post.title}</span>
+        <span className="title">- {post.title}</span>
       </div>
       <p className="body">{post.body}</p>
+
+      {/* 글자 길이 지정해서 보여줄 경우 */}
+      {/* <p className="body">{post.body.slice(0, 50)}...</p> */}
     </div>
   );
 };

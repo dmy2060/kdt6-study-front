@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import PostItem from "./PostItem";
 import "./App.css";
+// 자바스크립트일땐 cdn, react에서 아래처럼 씀
+import axios from "axios";
 
 // 임시 데이터 (backend 서버에서 받아왔다고 가정하는 데이터)
 const fakePosts = [
@@ -88,25 +90,48 @@ const fakePosts = [
 // [실습 풀이]
 const PostList = () => {
   const [posts, setPosts] = useState([]);
-  const getPosts = () => {
-    setPosts(fakePosts);
+  // [before]
+  // const getPosts = () => {
+  //   setPosts(fakePosts);
+  // };
+
+  // [after] axios
+  const getPosts = async () => {
+    const res = await axios.get("https://jsonplaceholder.typicode.com/posts");
+    console.log(res.data.slice(0, 10));
+    setPosts(res.data.slice(0, 10));
   };
   useEffect(() => {
-    setTimeout(() => {
-      getPosts(); // posts state 변경 함수
-    }, 2000);
+    // [before]
+    // setTimeout(() => {
+    //   getPosts(); // posts state 변경 함수
+    // }, 2000);
+
+    getPosts();
   }, []); // 업데이트 안되고 mount 할때만 불러올거라 [] 빈배열 넣어주면 됨
+
+  const dataLoading = () => {
+    return <h2>Loading...</h2>;
+  };
+  const dataLoaded = posts.map((post) => {
+    return <PostItem post={post} key={post.id} />;
+  });
 
   return (
     <div className="PostList">
       <header>📨 Post List</header>
-      {posts.length > 0 ? (
+      {/* before */}
+      {/* {posts.length > 0 ? (
         posts.map((post) => {
+          // key 값은 자식이 아닌 부모 컴포넌트에서 넣어줘야함
           return <PostItem post={post} key={post.id} />;
         })
       ) : (
         <h2>Loading...</h2>
-      )}
+      )} */}
+
+      {/* after */}
+      {posts.length > 0 ? dataLoaded : dataLoading()}
     </div>
   );
 };
