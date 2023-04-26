@@ -1,0 +1,50 @@
+@import "./utils.scss";
+
+@mixin position($top, $left) {
+  top: $top;
+  left: $left;
+}
+
+.body {
+  position: absolute;
+  border-radius: 50%;
+  @include size(100px, 100px);
+  .eye {
+    position: absolute;
+    border-radius: 50%;
+    &.eye-white {
+      @include size(40px, 40px);
+      background-color: white;
+      position: relative;
+      left: 20px;
+      top: 20px;
+    }
+    &.eye-black {
+      position: relative;
+      @include size(20px, 20px);
+      background-color: black;
+      top: 10px;
+    }
+  }
+  &.body1 {
+    @include position(100px, 100px);
+    background-color: rgb(0, 0, 166);
+  }
+  &.body2 {
+    @include position(150px, 160px);
+    background-color: rgb(0, 0, 166);
+  }
+
+  &.body3 {
+    @include position(190px, 200px);
+    background-color: rgb(52, 118, 231);
+  }
+  &.body4 {
+    @include position(240px, 220px);
+    background-color: rgb(47, 146, 233);
+  }
+  &.body5 {
+    @include position(280px, 280px);
+    background-color: rgb(140, 191, 253);
+  }
+}

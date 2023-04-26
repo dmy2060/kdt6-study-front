@@ -32,7 +32,7 @@ const reducer = (prevNumber, action) => {
 };
 
 const UseReducerTest = () => {
-  //   [before]
+  // [before]
   //   const [number, dispatch] = useReducer(reducer, 7);
 
   //   const increment = () => {
@@ -45,7 +45,7 @@ const UseReducerTest = () => {
   //     dispatch("RESET");
   //   };
 
-  //   [after]
+  // [after]
   const [number, dispatch] = useReducer(reducer, { value: 7 });
 
   const increment = () => {

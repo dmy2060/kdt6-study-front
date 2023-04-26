@@ -1,0 +1,103 @@
+// @import './utils.scss';
+
+// @mixin animation($delay, $duration, $name) {
+//   animation-delay: $delay;
+//   animation-duration: $duration;
+//   animation-iteration-count: infinite;
+//   animation-name: $name;
+// }
+
+// @mixin keyframe($animation_name, $size) {
+//   @keyframes #{$animation_name} {
+//     from,
+//     to {
+//       transform: translate(0, 0);
+//     }
+//     25% {
+//       transform: translate($size, 0);
+//     }
+//     50% {
+//       transform: translate($size, $size);
+//     }
+//     75% {
+//       transform: translate(0, $size);
+//     }
+//   }
+// }
+
+// .circle {
+//   div {
+//     @include size(50px, 50px);
+//     border-radius: 50%;
+//     transition: transform 0.4s;
+//     &:first-child {
+//       @include keyframe(move, 10vw);
+//       background-color: $color-pink;
+//       @include animation(0s, 4s, move);
+//     }
+//     &:nth-child(2) {
+//       background-color: $color-yellow;
+//       @include keyframe(move2, 20vw);
+//       @include animation(0s, 4s, move2);
+//     }
+//     &:last-child {
+//       background-color: $color-green;
+//       @include keyframe(move3, 30vw);
+//       @include animation(0s, 4s, move3);
+//     }
+//   }
+// }
+
+// [실습 풀이]
+$color-pink: pink;
+$color-yellow: yellow;
+$color-green: green;
+
+@mixin circle($color) {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: $color;
+}
+@mixin animation-rotate($ani-name, $size) {
+  @keyframes #{$ani-name} {
+    0%,
+    100% {
+      top: 0;
+      left: 0;
+    }
+    25% {
+      top: 0;
+      left: $size;
+    }
+    50% {
+      top: $size;
+      left: $size;
+    }
+    75% {
+      top: $size;
+      left: 0;
+    }
+  }
+}
+.circle {
+  position: relative;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+
+  &.pink {
+    @include circle($color-pink);
+    @include animation-rotate(pinkAnim, 100px);
+    animation-name: pinkAnim;
+  }
+  &.yellow {
+    @include circle($color-yellow);
+    @include animation-rotate(yellowAnim, 200px);
+    animation-name: yellowAnim;
+  }
+  &.green {
+    @include circle($color-green);
+    @include animation-rotate(greenAnim, 300px);
+    animation-name: greenAnim;
+  }
+}

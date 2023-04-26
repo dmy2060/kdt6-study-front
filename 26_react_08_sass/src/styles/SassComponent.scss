@@ -1,0 +1,92 @@
+@import "./utils.scss";
+// _바 생략 가능
+@import "~include-media/dist/include-media";
+// node_modules 까지 상대경로로 작성하면 복잡하기 때문에
+// ~: node_modules에서 라이브러리 디렉토리를 알아서 감지
+
+// scss 주석
+// 컴파일 되는 건 head 태그 안에서 확인이 가능함
+
+// 특징3. $ 변수 선언
+// // COLOR 변수
+// $color-red: red;
+// $color-orange: orange;
+// $color-yellow: yellow;
+// $color-green: green;
+// $color-blue: blue;
+// $color-indigo: indigo;
+// $color-purple: purple;
+// // DURATION 변수
+// $animation-duration: 0.4s;
+// 특징4. mixin 사용 (=함수)
+// 믹스인을 정의할 때: @mixin 키워드
+// 믹스인을 사용할 때: @include 키워드
+@mixin box($size) {
+  width: $size;
+  height: $size;
+}
+
+// 특징 1. 중첩 가능(nesting)
+// : 요소가 부모 자식 표현이 쉬움
+.SassComponent {
+  display: flex;
+  margin-top: 30px;
+  background-color: rgb(204, 204, 204);
+
+  .box {
+    @include box(100px);
+    // width: 100px;
+    // height: 100px;
+    // border: 1px solid black;
+    // 특징 2. & 선택자 사용
+    // : 부모 선택자를 참조하여 치환
+    &:hover {
+      // box.hover
+      $box-animation: $animation-duration * 2;
+      cursor: pointer;
+      transform: translateY(-20px);
+      transition: transform $box-animation;
+    }
+    &.red {
+      background-color: $color-red;
+    }
+    &.orange {
+      background-color: $color-orange;
+    }
+    &.yellow {
+      background-color: $color-yellow;
+    }
+    &.green {
+      background-color: $color-green;
+    }
+    &.blue {
+      background-color: $color-blue;
+    }
+    &.indigo {
+      background-color: $color-indigo;
+    }
+    &.purple {
+      background-color: $color-purple;
+    }
+  }
+}
+
+// 반응형
+// 변수를 미디어 쿼리에서 사용하려면 #{변수명} 넣어서 사용하면됨!
+// @media (max-width: #{$breakpoint-tablet}) {
+//   .SassComponent {
+//     flex-direction: column;
+//   }
+// }
+
+// @include media("<758px") {
+//   .SassComponent {
+//     flex-direction: column;
+//   }
+// }
+
+@include media("<#{$breakpoint-tablet}") {
+  .SassComponent {
+    flex-direction: column;
+  }
+}

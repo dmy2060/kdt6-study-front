@@ -1,0 +1,33 @@
+// _utils.scss
+// 변수, mixin 등을 정의해놓는 파일
+// 파일명 앞에 _ 기호를 붙이는 이유?
+// : 변수, mixin만을 저장해놓을 파일이기 때문에
+// 별도의 표준 css로 변환(컴파일)될 필요가 없음
+// 성능/관리 측면에서의 이득을 취할 수 있음
+
+// COLOR 변수
+$color-red: red;
+$color-orange: orange;
+$color-yellow: yellow;
+$color-green: green;
+$color-blue: blue;
+$color-indigo: indigo;
+$color-purple: purple;
+// DURATION 변수
+$animation-duration: 0.4s;
+// BREAKPOINT
+$breakpoint-tablet: 758px;
+$color-pink: pink;
+$color-primary: rgb(119, 164, 255);
+$color-secondary: rgb(123, 123, 123);
+$color-white: rgb(243, 247, 255);
+$shadow-black: rgba(0, 0, 0, 0.15);
+$height-header: 80px;
+@mixin translate($px) {
+  transform: translateX($px);
+}
+
+@mixin size($width, $height) {
+  width: $width;
+  height: $height;
+}

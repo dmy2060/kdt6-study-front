@@ -86,7 +86,7 @@
 //   });
 // };
 
-// TODE: User 모델 정의
+// TO be: User 모델 정의
 const User = (Sequelize, DataTypes) => {
   // define 파라미터 (모델이름, 데이터타입, 모델에 대한 옵션 정의)
   const model = Sequelize.define(
